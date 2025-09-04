@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3475","Отображение информации о контрибьютере при наведении на аватар на странице кода","","Thu Sep 04 11:38:58 UTC 2025","passed","Thu Sep 04 11:39:01 UTC 2025","","github.example.tests.InfoAboutContributorsOnCodePageTest","github.example.tests.InfoAboutContributorsOnCodePageTest","test"
+"","33786","Скопировать ссылку по ssh","","Thu Sep 04 11:37:12 UTC 2025","passed","Thu Sep 04 11:37:46 UTC 2025","","github.example.tests.CopyGitHubCLILinkOnCodePageTest","github.example.tests.CopyGitHubCLILinkOnCodePageTest","test"
+"","71895","Отображение тега в списке тегов","","Thu Sep 04 11:37:46 UTC 2025","failed","Thu Sep 04 11:38:58 UTC 2025","","github.example.tests.FindTagOnCodePageTest","github.example.tests.FindTagOnCodePageTest","test"
