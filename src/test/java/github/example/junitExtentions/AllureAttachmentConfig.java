@@ -8,6 +8,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class AllureAttachmentConfig {
@@ -31,5 +34,34 @@ public class AllureAttachmentConfig {
             var logsString = "";
             return logsString + "\n" + Selenide.getWebDriverLogs(LogType.BROWSER);
         } else return null;
+    }
+
+    @Attachment(
+            value = "Video HTML",
+            type = "text/html",
+            fileExtension = ".html"
+    )
+    String getVideoUrl(String sessionId) {
+        var url = "http://localhost:4444/video/" + sessionId + ".mp4";
+        return ("<html><body><a href=\"" + url + "\">" + url + "</a><video width='100%' height='400px' controls autoplay><source src='"
+                + url + "' type='video/mp4'></video></body></html>");
+    }
+
+    @Attachment(
+            value = "Видео",
+            type = "video/mp4",
+            fileExtension = ".mp4"
+    )
+    byte[] attachVideo(String sessionId) throws InterruptedException, IOException {
+        Selenide.closeWebDriver();
+        Thread.sleep(10000);
+        // Копируем данные из URL в файл (без Apache Commons)
+        var uri = "http://localhost:4444/video/" + sessionId + ".mp4";
+        URL url = new URL(uri);
+        byte[] bytes;
+        try (InputStream stream = url.openStream()) {
+            bytes = stream.readAllBytes();
+        }
+        return bytes;
     }
 }

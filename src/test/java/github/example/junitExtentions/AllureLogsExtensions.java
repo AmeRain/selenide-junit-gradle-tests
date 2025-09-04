@@ -1,5 +1,6 @@
 package github.example.junitExtentions;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
@@ -11,8 +12,8 @@ public class AllureLogsExtensions implements AfterTestExecutionCallback {
             allureAttachmentConfig.pageSource();
             allureAttachmentConfig.pageScreen();
             allureAttachmentConfig.logs();
-//            AllureLogsAttachment.getVideoUrl(Selenide.sessionId().toString());
-//            AllureLogsAttachment.attachVideo(Selenide.sessionId().toString());
+            allureAttachmentConfig.getVideoUrl(Selenide.sessionId().toString());
+            allureAttachmentConfig.attachVideo(Selenide.sessionId().toString());
         }
     }
 }

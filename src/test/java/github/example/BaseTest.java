@@ -22,7 +22,7 @@ public abstract class BaseTest {
     @BeforeAll
     void beforeAll() {
         Configuration.fastSetValue = true;
-        Configuration.timeout = 30_000L;
+        Configuration.timeout = 30_000L; //timeout на ожидание элемента
         Configuration.pageLoadTimeout = 180_000L;
         var browser = System.getenv("BROWSER");
         Configuration.browser = browser != null ? browser : "chrome";
