@@ -1,6 +1,6 @@
 timeout(30) {
     node("macOS-agent-zvuk") {
-       echo "Download project"
+       stage("Download project"){
        checkout scm: [
                 $class: 'GitSCM',
                 branches: [[name: '${BRANCH}']],
@@ -9,11 +9,14 @@ timeout(30) {
                          url: 'git@github.com:AmeRain/selenide-junit-gradle-tests.git'
                          ]]
                 ]
+       }
        try {
-       labelledShell(label: 'Run tests', script: '''
-       chmod +x gradlew
-       env isRemote=true ./gradlew clean test || true
-       ''')
+         stage("Run tests"){
+           labelledShell(label: 'Run tests', script: '''
+           chmod +x gradlew
+           env isRemote=true ./gradlew clean test || true
+           ''')
+         }
        } finally {
        allure([
                    includeProperties: true,
